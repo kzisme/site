@@ -89,11 +89,11 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-    color: $brand-color;
+    color: #C0392B;
     text-decoration: none;
 
     &:visited {
-        color: darken($brand-color, 15%);
+        color: #C0392B;
     }
 
     &:hover {
@@ -101,7 +101,6 @@ a {
         text-decoration: underline;
     }
 }
-
 
 
 /**
@@ -201,4 +200,12 @@ pre {
             fill: $grey-color;
         }
     }
+}
+/**
+* About
+*/
+.about {
+    padding-bottom: 30px;
+    width: 75%;
+    font-size: 1em;
 }
