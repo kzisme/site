@@ -25,13 +25,31 @@ first thing I wanted to do.  A common way of keeping track of your dotfiles is m
 A common solution to cleaning up your dotfiles is to use symbolic links to
 link all of your configuration files within a folder to your ~/ directory.
 Quite often this task can become a small project by itself, so I stumbled
-upon GNU Stow(Add link here). 
+upon GNU Stow(Add link here).  In short, stow is a utility that automates
+symlinking directories for you in a quick and easy manner.
+
+To make things even easier - using Git in tandem with stow allows you to pick
+and choose specific dotfiles per machine and only ~stow~ the ones you need.  
+
+When I first began using a unix based system it was beneficial to keep my
+dotfiles all in one place, but when I wanted to backup all of my dotfiles using
+git...it became a time sink.
 
 Stow requires that you create a new directory within your ~/ directory where
 all of your dotfiles will be moved to.  I went ahead and named mine
 "dotfiles".
 
+At this point in time you may also choose your favorite versioning system to
+backup all of your dotfiles.  For be, that happens to be Git.
+
+
 ## Creating dotfiles directory
+
+
+### Setting up version control
+> mkdit dotfiles 
+cd dotfiles
+git init
 
 ```
 ~/Users/user
