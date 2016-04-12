@@ -5,8 +5,7 @@ date:   2016-04-06 23:32:21
 categories: jekyll update
 ---
 
-When I first starting using OSX configuring everything to my liking was the
-first thing I wanted to do.  A common way of keeping track of your dotfiles is making use of git.  Generally all of your configuration files sit within your ~/home directory.  As you can see below it can become quite messy.
+When first getting a new system most people take some time to move all of their configuration files to their new machine.  This requires creating symlinks manually, and then verisoning the original directories that the symlinks point to using Git.  Generally all of your configuration files sit within your ~/home directory.  As you can see below it can become quite messy with each new program you try out.
 
 ## Default ~/ setup
 
@@ -16,6 +15,7 @@ first thing I wanted to do.  A common way of keeping track of your dotfiles is m
 |-- .vim
 |-- .vimrc
 |
+|
 |-- .bashrc
 |-- .bash_aliases
 |-- .bash_profile
@@ -23,39 +23,33 @@ first thing I wanted to do.  A common way of keeping track of your dotfiles is m
 ```
 
 A common solution to cleaning up your dotfiles is to use symbolic links to
-link all of your configuration files within a folder to your ~/ directory.
-Quite often this task can become a small project by itself, so I stumbled
-upon GNU Stow(Add link here).  In short, stow is a utility that automates
-symlinking directories for you in a quick and easy manner.
+link all of your configuration files within a single folder to your ~/ directory.
+Quite often this task can be quite frustrating, but recently I stumbled
+upon GNU Stow(Add link here).  In short, Stow is a utility that automates
+symlinking directories for you in a quick no-nonsense manner.
 
 To make things even easier - using Git in tandem with stow allows you to pick
 and choose specific dotfiles per machine and only ~stow~ the ones you need.  
-
-When I first began using a unix based system it was beneficial to keep my
-dotfiles all in one place, but when I wanted to backup all of my dotfiles using
-git...it became a time sink.
 
 Stow requires that you create a new directory within your ~/ directory where
 all of your dotfiles will be moved to.  I went ahead and named mine
 "dotfiles".
 
-At this point in time you may also choose your favorite versioning system to
-backup all of your dotfiles.  For be, that happens to be Git.
+At this point in time you may also choose your favorite version control system to
+backup all of your dotfiles.  For me, that happens to be Git.
 
-
-## Creating dotfiles directory
-
-
-### Setting up version control
-> mkdit dotfiles 
+### Setting up version control in our new directory
+> mkdir dotfiles 
 cd dotfiles
 git init
 
 ```
-~/Users/user
+~/Users/kzisme
 +
 |-- dotfiles
 |-- .vim
+|-- .vimrc
+|
 |
 |-- .bashrc
 |-- .bash_aliases
@@ -63,11 +57,17 @@ git init
 ```
 
 After the new directory has been created you can begin creating an
-individual directory for each program that requires a configuration file.
-Then you can begin moving all of your dotfiles into their respective folders.
+individual directory for each program that requires a configuration file.  (I
+just happen to only have a few in this example)
+Then you can begin moving all of your dotfiles into their respective folders
+using the move command.
+
+> mv ~/Users/kzisme/.vimrc ~/Users/kzisme/dotfiles/.vimrc
+  mv ~/Users/kzisme/.bashrc ~/Users/kzisme/dotfiles/.bashrc
+  mv ~/Users/kzisme/.bash_aliases ~/Users/kzisme/dotfiles/.bash_aliases
 
 ```
-~/Users/user
+~/Users/kzisme
 +
 |-- dotfiles
 |   -- /vim
@@ -78,15 +78,46 @@ Then you can begin moving all of your dotfiles into their respective folders.
 +
 ```
 
-Next you must be be within the ~/dotfiles directory 
+To start using Stow your working directory must be the ~/dotfiles directory.
 
-Then you can run...
+Finally you can make use of Stow by running
+
+```
+stow + /directoryname
+```
 
 ```
 stow vim
 stow bash
 ```
 
-This will automatically create symbolic links for you within your ~/
+This will automatically create symbolic links for each program within your ~/
 directory, but will keep all of your configuration files wrapped up nicely
 within your new dotfiles directory.  
+
+```
+~/Users/kzisme
++
+|-- dotfiles <-- All files are within here
+|-- .vim
+|-- .vimrc ~symlinked~
+|
+|
+|-- .bashrc ~symlinked~
+|-- .bash_aliases ~symlinked~
++
+```
+
+### Un-Stowing 
+In some instances you may want to remove the symlink you have created
+previously.  That can be done by passing the -D flag to Stow.
+
+```
+stow -D vim
+```
+
+
+
+
+
+
