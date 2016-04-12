@@ -38,10 +38,14 @@ all of your dotfiles will be moved to.  I went ahead and named mine
 At this point in time you may also choose your favorite version control system to
 backup all of your dotfiles.  For me, that happens to be Git.
 
-### Setting up version control in our new directory
-> mkdir dotfiles 
+### Creating a new directory and initializing Git
+
+```
+mkdir dotfiles 
 cd dotfiles
 git init
+```
+
 
 ```
 ~/Users/kzisme
@@ -62,9 +66,11 @@ just happen to only have a few in this example)
 Then you can begin moving all of your dotfiles into their respective folders
 using the move command.
 
-> mv ~/Users/kzisme/.vimrc ~/Users/kzisme/dotfiles/.vimrc
+```
+  mv ~/Users/kzisme/.vimrc ~/Users/kzisme/dotfiles/.vimrc
   mv ~/Users/kzisme/.bashrc ~/Users/kzisme/dotfiles/.bashrc
   mv ~/Users/kzisme/.bash_aliases ~/Users/kzisme/dotfiles/.bash_aliases
+```
 
 ```
 ~/Users/kzisme
@@ -116,6 +122,18 @@ previously.  That can be done by passing the -D flag to Stow.
 stow -D vim
 ```
 
+```
+~/Users/kzisme
++
+|-- dotfiles <-- All files are within here
+|-- .vim
+|-- .vimrc -symlink removed-
+|
+|
+|-- .bashrc ~symlinked~
+|-- .bash_aliases ~symlinked~
++
+```
 
 
 
