@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Dotfile management with GNU Stow"
-date:   2016-04-06 23:32:21
+date:   2016-04-16 23:32:21
 categories: jekyll update
 ---
 
