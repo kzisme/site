@@ -9,7 +9,7 @@ When first getting a new system most people take some time to move all of their 
 
 ## Default ~/ setup
 
-~~~
+{% highlight sh %}
 ~/
 +
 |-- .vim
@@ -20,7 +20,7 @@ When first getting a new system most people take some time to move all of their 
 |-- .bash_aliases
 |-- .bash_profile
 +
-~~~
+{% endhighlight %}
 
 A common solution to cleaning up your dotfiles is to use symbolic links to
 link all of your configuration files within a single folder to your ~/ directory.
@@ -40,14 +40,14 @@ backup all of your dotfiles.  For me, that happens to be Git.
 
 ### Creating a new directory and initializing Git
 
-~~~
+{% highlight sh %}
 mkdir dotfiles 
 cd dotfiles
 git init
-~~~
+{% endhighlight %}
 
 
-~~~
+{% highlight sh %}
 ~/
 +
 |-- dotfiles
@@ -58,7 +58,7 @@ git init
 |-- .bashrc
 |-- .bash_aliases
 +
-~~~
+{% endhighlight %}
 
 After the new directory has been created you can begin creating an
 individual directory for each program that requires a configuration file.  (I
@@ -66,13 +66,13 @@ just happen to only have a few in this example)
 Then you can begin moving all of your dotfiles into their respective folders
 using the move command.
 
-~~~
+{% highlight sh %}
   mv ~/Users/kzisme/.vimrc ~/Users/kzisme/dotfiles/vim/.vimrc
   mv ~/Users/kzisme/.bashrc ~/Users/kzisme/dotfiles/bash/.bashrc
   mv ~/Users/kzisme/.bash_aliases ~/Users/kzisme/dotfiles/bash/.bash_aliases
-~~~
+{% endhighlight %}
 
-~~~
+{% highlight sh %}
 ~/dotfiles
 +
 |-- dotfiles
@@ -82,26 +82,26 @@ using the move command.
 |       -- .bashrc
 |       -- .bash_aliases
 +
-~~~
+{% endhighlight %}
 
 To start using Stow your working directory must be the ~/dotfiles directory.
 
 Finally you can make use of Stow by running
 
-~~~
+{% highlight sh %}
 stow <directoryname>
-~~~
+{% endhighlight %}
 
-~~~
+{% highlight sh %}
 stow vim
 stow bash
-~~~
+{% endhighlight %}
 
 This will automatically create symbolic links for each program within your ~/
 directory, but will keep all of your configuration files wrapped up nicely
 within your new dotfiles directory.  
 
-~~~
+{% highlight sh %}
 ~/Users/kzisme
 +
 |-- dotfiles <-- All files are within here
@@ -112,17 +112,17 @@ within your new dotfiles directory.
 |-- .bashrc ~symlinked~
 |-- .bash_aliases ~symlinked~
 +
-~~~
+{% endhighlight %}
 
 ### Un-Stowing 
 In some instances you may want to remove the symlink you have created
 previously.  That can be done by passing the -D flag to Stow.
 
-~~~
+{% highlight sh %}
 stow -D vim
-~~~
+{% endhighlight %}
 
-~~~
+{% highlight sh %}
 ~/Users/kzisme
 +
 |-- dotfiles <-- All files are within here
@@ -133,7 +133,7 @@ stow -D vim
 |-- .bashrc ~symlinked~
 |-- .bash_aliases ~symlinked~
 +
-~~~
+{% endhighlight %}
 
 
 
