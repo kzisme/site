@@ -2,7 +2,7 @@
 layout: post
 title:  "Dotfile management with GNU Stow"
 date:   2016-04-16 23:32:21
-categories: jekyll update
+categories: jekyll post
 ---
 
 When first getting a new system most people take some time to move all of their configuration files to their new machine.  This requires creating symlinks manually, and then verisoning the original directories so that the symlinkscan point to the correct origin.  Generally all of your configuration files sit within your ~/ directory.  As you can see below it can become quite messy with each new program you try out.
