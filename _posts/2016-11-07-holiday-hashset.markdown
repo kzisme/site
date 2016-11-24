@@ -4,14 +4,36 @@ title:  "C# Holiday Hashset"
 date:   2016-11-06 22:52:21
 categories: jekyll post
 ---
+Recently I had to figure out a way to disable  an automated process that would 
+run on a daily basis.  Since the functionality of the Windows Task Scheulder 
+doesn't easily support something like this I tried to think of a "set it and
+forget it" solution.
 
-This is what my exerpt will be when I write something...
+For my purposes I had to disable my program from running based on the Federal
+Reserve holiday list.
+
+At the beginning of your program you are able to pass the current year to
+the hashset, and it will return a list of the holidays you've specified. 
+
+Depending on the holiday you would like to add to the hashset I've included a
+few ways you can easily find the date for each year.
 
 
+1. AdjustForWeekendHoliday() - Will push the observed holiday date to Monday if
+   the holidays actual date is on a Sunday, and will move the observed holiday
+   to Friday if the actual date falls on a Saturday.
 
+2. FindDay() - Is able to find a holiday if it occurs on a certain 2nd or 3rd
+   Monday of a Month.
+
+Making use of both of these functions it's quick and easy to add a day to the
+hashset.
+
+I'll most likley use this in future projects that are required to not run on
+certain days, and I hope others find this snippet useful as well.
 
 {% highlight c# %}
-namespace EntitiyFrameworkTest
+namespace HolidayHashSett
 {
     class Program
     {
@@ -100,14 +122,6 @@ namespace EntitiyFrameworkTest
                 return holiday;
             }
         }
-
-        public enum HolidayIsOnWeekdayOtherThanMondayPushToNextWeek
-        {
-            Tuesday,
-            Wednesday,
-            Thursday,
-            Friday
-        };
 
         //For example to find the day for 2nd Friday, February, 2016
         //=>call FindDay(2016, 2, DayOfWeek.Friday, 2)
