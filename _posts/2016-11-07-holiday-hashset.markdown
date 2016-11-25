@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "C# Holiday Hashset"
-date:   2016-11-06 22:52:21
+date:   2016-11-24 20:37:21
 categories: jekyll post
 ---
 Recently I had to figure out a way to disable  an automated process that would 
