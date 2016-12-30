@@ -11,4 +11,7 @@ I chose to use the Microsoft.Office.Interop.Word COM assembly to generate
 documents.  I'm sure there are other ways to do this, but this was the most
 straight forward way I found.
 
+The only issue with this approach is that it is required to have Word installed 
+on the machine that the program will be running on.
+
 
