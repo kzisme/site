@@ -31,6 +31,8 @@ I normally setup class level variables to hold the directories where the
 copying of the template is done, and where the populating of the copied
 document is done.  
 
+
+{% highlight c# %}
 // I pass in the class level variable containing the file path for the copied
 // file to check if a copy already exists.
 if (_sOriginDirectoryPath.Contains("copy"))
@@ -63,7 +65,7 @@ if (doc.Bookmarks.Exists("myBookmarkName"))
 // Lastly I normally return the newly created document path to upload it to an
 // FTP, Email it, or save it in a specific location.
 return sWorkDirectory + "\\" + sBorrowerFirstName + "_" + sSubServicerLoanNumber + "_GoodByeLetter.pdf";
-
+{% endhighlight %}
 
 
 
