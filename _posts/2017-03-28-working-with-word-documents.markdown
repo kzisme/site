@@ -4,8 +4,8 @@ title:  "C# Working With Word Documents"
 date:   2017-03-28 22:20:21
 categories: jekyll post
 ---
-For many people working with C#/.NET automating the creation of word documents
-was a painful process to figure out for me initially.
+While working with  C#/.NET automating  the creation of word documents
+was a painful process to figure out initially.
 
 I chose to use the Microsoft.Office.Interop.Word COM assembly to generate
 documents.  I'm sure there are other ways to do this, but this was the most
