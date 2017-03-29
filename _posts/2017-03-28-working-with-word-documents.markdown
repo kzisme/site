@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "C# Working With Word Documents"
-date:   2016-12-03 20:37:21
+date:   2017-03-28 22:20:21
 categories: jekyll post
 ---
 For many people working with C#/.NET automating the creation of word documents
@@ -38,7 +38,7 @@ document is done.
 if (_sOriginDirectoryPath.Contains("copy"))
 {
     WriteLogFile("Found A Copy  - Deleting It");
-    File.Delete(sGoodbyeLetterPath);
+    File.Delete(sOriginDirectoryPath);
 }
 
 // If we don't find a copy - create one.
@@ -67,7 +67,21 @@ if (doc.Bookmarks.Exists("myBookmarkName"))
 return sWorkDirectory + "\\" + sBorrowerFirstName + "_" + sSubServicerLoanNumber + "_GoodByeLetter.pdf";
 {% endhighlight %}
 
+All of the code snippet above is usually enclosed in a loop, so each iteration
+you're essentially generating a document per an order and doing something with
+it.    
 
+Here are a few final tips if you're going to have more than a few bookmarks in
+your document:
+   
+   
+   - Enabling proofreading marks helps when figuring out why text isn't going
+     where it's supposed to.
+   - If you have to work with many bookmarks (40+) it's probably a good idea to
+     create an object to pass to your function that populates your document.
+   - If the structure of the document is made of columns you may have to write
+     a function(s) to correctly determine the spacing/tab amounts between
+     insertions.
 
 
 
