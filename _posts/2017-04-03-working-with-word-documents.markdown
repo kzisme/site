@@ -1,26 +1,29 @@
 ---
 layout: post
 title:  "C# Working With Word Documents"
-date:   2017-03-28 22:20:21
+date:   2017-04-03 21:09:21
 categories: jekyll post
 ---
 While working with  C#/.NET automating  the creation of word documents
-was a painful process to figure out initially.
+was a painful process to figure out initially.  The great part about using word
+automation is that it frees up other people's time who previously had to
+spend time on these repititive tasks on a daily basis. 
 
 I chose to use the Microsoft.Office.Interop.Word COM assembly to generate
-documents.  I'm sure there are other ways to do this, but this was the most
-straight forward way I found.
+documents.  The only issue with this approach is that it is 
+required to have Word installed on the machine that the program will be running 
+on.
 
-The only issue with this approach is that it is required to have Word installed 
-on the machine that the program will be running on.
-
-Once you have a word document to work with as a template document for inserting 
-text into you can begin adding bookmarks to the document.  These booksmarks
-will act as insert points within your code.  
+Once you have a word document(.docx format) to work with as a template document 
+for inserting text into you can begin adding bookmarks to the document.  
+These booksmarks will act as insert points within your code.  
 
 What I normally do is select the placeholder text I want to overwrite, and then
 insert a bookmark at that point (while taking note of the name I used for the
-bookmark).
+bookmark).  In Word 2016 the bookmark functionality can be found under the
+"Insert" menu.  Whatever text (or wherever your cursor currently is) you
+currently have hilighted is where the bookmark will be created.  This text will
+also be replaced when inserting text into the bookmark.
 
 Since the document you are inserting text into is acting as a template it is
 necessary to first make a copy of the document before altering it.  If you
@@ -30,7 +33,6 @@ the first.
 I normally setup class level variables to hold the directories where the
 copying of the template is done, and where the populating of the copied
 document is done.  
-
 
 {% highlight c# %}
 // I pass in the class level variable containing the file path for the copied
@@ -64,7 +66,7 @@ if (doc.Bookmarks.Exists("myBookmarkName"))
 
 // Lastly I normally return the newly created document path to upload it to an
 // FTP, Email it, or save it in a specific location.
-return sWorkDirectory + "\\" + sBorrowerFirstName + "_" + sSubServicerLoanNumber + "_GoodByeLetter.pdf";
+return _sWorkingDirectoryPath`+ "\\"+ "NewPdfToSend.pdf";
 {% endhighlight %}
 
 All of the code snippet above is usually enclosed in a loop, so each iteration
@@ -82,6 +84,9 @@ your document:
    - If the structure of the document is made of columns you may have to write
      a function(s) to correctly determine the spacing/tab amounts between
      insertions.
+   - You can insert multiple bookmarks in the same position - even without
+     replacing text, but it makes debugging a little harder if something goes
+     wrong later on when generating documents.
 
 
 
