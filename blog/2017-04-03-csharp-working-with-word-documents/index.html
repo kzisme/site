@@ -1,0 +1,408 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><script>(function() {var savedMode = localStorage.getItem('preferredMode');if (savedMode === 'dark' || (!savedMode && window.matchMedia('(prefers-color-scheme:dark)').matches)) {document.documentElement.classList.add('dark-mode');}document.documentElement.style.visibility = 'hidden';})();</script><title>C# Working With Word Documents</title><meta content="C# Working With Word Documents" property="og:title"><meta content="C# Working With Word Documents" name="twitter:title"><meta content="C# Working With Word Documents" name="title"><meta content="C# Working With Word Documents" property="og:site_name"><meta content="Migrated from Jekyll: Automating Word document creation with C# and Interop." name="description"><meta content="Migrated from Jekyll: Automating Word document creation with C# and Interop." property="facebook:description"><meta content="Migrated from Jekyll: Automating Word document creation with C# and Interop." property="og:description"><meta content="Migrated from Jekyll: Automating Word document creation with C# and Interop." name="twitter:description"><meta property="twitter:card" content="summary_large_image"><meta content="" name="twitter:image"><meta content="" name="facebook:image"><meta content="" name="og:image"><link href="/logos.png" rel="icon" type="image/x-icon"><link rel="apple-touch-icon" href="/logos.png"><meta content="" property="facebook:author"><meta content="" property="twitter:author"><meta content="" name="twitter:site"><meta property="og:type" content="website"><link rel="canonical" href="https://brutalism.000000076.xyz/blog/2017-04-03-csharp-working-with-word-documents/"><link rel="alternate" href="feed/feed.xml" type="application/atom+xml" title=""><meta name="language" content="en"><meta name="locale" content="en_US"><meta property="og:locale" content="en_US"><meta name="generator" content="Eleventy v3.1.2"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","description":"","headline":" - ","name":"","url":"https://brutalism.000000076.xyz/blog/2017-04-03-csharp-working-with-word-documents/"}</script><style>/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #8292a2;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+/* Firefox Dark VSCode Theme for PrismJS (accurate mapping) */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #B1B1B3;
+  background: #2A2A2E;
+  font-family: 'Fira Mono', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 1em;
+  text-shadow: none;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  tab-size: 4;
+  hyphens: none;
+}
+
+/* Selection */
+pre[class*="language-"]::selection, code[class*="language-"]::selection {
+  background: #204E8A;
+}
+pre[class*="language-"]::-moz-selection, code[class*="language-"]::-moz-selection {
+  background: #204E8A;
+}
+
+/* Token styles */
+.token.comment,
+.token.prolog,
+.token.cdata {
+  color: #939393;
+  font-style: italic;
+}
+
+.token.punctuation {
+  color: #D7D7DB;
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+.token.property,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #FFFFB4;
+}
+
+.token.boolean,
+.token.number {
+  color: #6B89FF;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #6B89FF;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.token.variable {
+  color: #75BFFF;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword,
+.token.storage,
+.token.storage-type {
+  color: #FF7DE9;
+}
+
+.token.function,
+.token.class-name,
+.token.meta-function-call,
+.token.entity-name-class,
+.token.entity-name-type {
+  color: #B98EFF;
+}
+
+.token.regex,
+.token.important {
+  color: #6B89FF;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.parameter,
+.token.variable-parameter {
+  color: #75BFFF;
+}
+
+.token.tag,
+.token.entity-name-tag {
+  color: #75BFFF;
+}
+
+.token.attr-value,
+.token.entity-other-attribute-name {
+  color: #FF7DE9;
+}
+
+.token.markup-inserted {
+  color: #86DE74;
+}
+.token.markup-deleted {
+  color: #CC3D3D;
+}
+.token.markup-changed {
+  color: #0A84FF;
+}
+
+.token.heading {
+  color: #86DE74;
+  font-weight: bold;
+}
+
+.token.inline-code {
+  color: #B98EFF;
+}
+
+.token.json-property {
+  color: #75BFFF;
+}
+
+.token.json-string {
+  color: #FF7DE9;
+}
+
+.token.json-number {
+  color: #86DE74;
+}
+
+/* Diff-specific rules (preserved from original) */
+pre[class*="language-diff-"] {
+	--eleventy-code-padding: 1.25em;
+	padding-left: var(--eleventy-code-padding);
+	padding-right: var(--eleventy-code-padding);
+}
+.token.deleted {
+	background-color: hsl(0, 51%, 37%);
+	color: inherit;
+}
+.token.inserted {
+	background-color: hsl(126, 31%, 39%);
+	color: inherit;
+}
+
+/* Make the + and - characters unselectable for copy/paste */
+.token.prefix.unchanged,
+.token.prefix.inserted,
+.token.prefix.deleted {
+	-webkit-user-select: none;
+	user-select: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.token.prefix.inserted,
+.token.prefix.deleted {
+	width: var(--eleventy-code-padding);
+	background-color: rgba(0,0,0,.2);
+}
+
+/* Optional: full-width background color */
+.token.inserted:not(.prefix),
+.token.deleted:not(.prefix) {
+	display: block;
+	margin-left: calc(-1 * var(--eleventy-code-padding));
+	margin-right: calc(-1 * var(--eleventy-code-padding));
+	text-decoration: none; /* override del, ins, mark defaults */
+	color: inherit; /* override del, ins, mark defaults */
+}
+:root {--bg-color: #ffffff;--text-color: #000000;}body {font-family: monospace;margin: 0;padding: 0;transition: background-color 0.3s, color 0.3s;}.light-mode {background-color: #ffffff;color: #000000;}.dark-mode {background-color: #000000;color: #ffffff;}header {max-width: 800px;margin: 0 auto;padding: 1rem;}nav ul {list-style-type: none;padding: 0;margin: 0;display: flex;justify-content: space-around;}nav ul li a {text-decoration: none;font-weight: bold;text-transform: uppercase;color: currentColor;}main {max-width: 800px;margin: 0 auto;padding: 2rem;}article {border: 2px solid currentColor;padding: 2rem;margin-bottom: 2rem;}h1, h2 {text-transform: uppercase;}.meta {font-size: 0.9em;margin-bottom: 1rem;}.tags {margin-top: 2rem;}.tag {display: inline-block;padding: 0.3rem 0.6rem;margin-right: 0.5rem;border: 2px solid currentColor;text-transform: uppercase;font-size: 0.8em;}.navigation {display: flex;justify-content: space-between;margin-top: 2rem;}.navigation a {padding: 0.5rem 1rem;border: 2px solid currentColor;text-decoration: none;color: currentColor;text-transform: uppercase;}.pagination {display: flex;justify-content: center;margin-top: 2rem;}.pagination a {margin: 0 0.5rem;padding: 0.5rem 1rem;border: 2px solid currentColor;text-decoration: none;color: currentColor;}a {color: currentColor;font-weight: bold;}#mode-toggle {position: fixed;top: 1rem;right: 1rem;padding: 0.5rem 1rem;background-color: #333333;color: #ffffff;border: none;cursor: pointer;text-transform: uppercase;font-weight: bold;}.media-container {margin: 2rem 0;border: 3px solid currentColor;padding: 1rem;}.media-container img {max-width: 100%;height: auto;display: block;margin: 0 auto;}.media-container iframe {width: 100%;aspect-ratio: 16 / 9;border: none;}.caption {text-align: center;margin-top: 0.5rem;font-style: italic;}footer {text-align:center;}text-align:center;display: block;  padding-bottom: 15px;font-size:12px;}
+
+/* Scramble link: black/white, monospace, underline, pointer */
+.scramble-link {
+  color: inherit;
+  font-family: 'Fira Mono', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-decoration: underline;
+  cursor: pointer;
+  background: transparent;
+  transition: color 0.2s;
+}
+.scramble-link:hover, .scramble-link:focus {
+  color: inherit;
+}
+
+:root{
+  --kz-fg:#d1d5db;      /* text */
+  --kz-bg:#000000;      /* page/strip bg */
+  --kz-accent:#33ff88;  /* prompt + cursor */
+  --kz-border:#000000;  /* card border */
+}
+
+/* wrapper (optional full-width dark strip) */
+.kz-term-wrap{
+  background:var(--kz-bg);
+  display:flex; justify-content:center; align-items:center;
+  padding:2.5rem 1rem;
+}
+
+/* the “card” */
+.kz-term-title{
+  color:var(--kz-fg);
+  font:600 clamp(1.25rem, 3.5vw, 2rem)/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  letter-spacing:.5px;
+  padding:1.25rem 1.5rem;
+  display:inline-block;
+  border:none;
+  border-radius:14px;
+  background:#000000;
+  box-shadow:none;
+  position:relative;
+}
+
+/* the “$ ” prompt */
+.kz-term-title::before{
+  content:"$ ";
+  color:var(--kz-accent);
+}
+
+/* blinking cursor */
+.kz-cursor{
+  color:var(--kz-accent);
+  margin-left:.2em;
+  animation:kz-blink 1.1s steps(1) infinite;
+}
+
+@keyframes kz-blink { 50% { opacity:0 } }
+
+/* optional faint CRT scanlines over the strip */
+.kz-term-wrap::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:repeating-linear-gradient(180deg, transparent 0 2px, rgba(255,255,255,.07) 2px 3px);
+  opacity:.05;
+}</style></head><body><link rel="stylesheet" href="/public/css/tiny-brutalism.css"><a href="#main-content" aria-label="Read Content Article" class="skip-to-content">Skip to content</a><header><nav><ul><li><a class="scramble-link" href="/" aria-label="Navigation Menu for Home">Home</a></li><li><a class="scramble-link" href="/about/" aria-label="Navigation Menu for About">About</a></li><li><a class="scramble-link" href="/blog/" aria-label="Navigation Menu for Blog">Blog</a></li><li><a class="scramble-link" href="" aria-label="Navigation Menu for Download">Download</a></li></ul></nav></header><button aria-label="dark light mode" id="mode-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning-charge-fill" viewBox="0 0 16 16"><path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"></path><title>Dark Light Mode</title></svg></button><main aria-label="Content Article Main" id="main-content"><heading-anchors><article><h1 id="c-working-with-word-documents"><a href="/blog/2017-04-03-csharp-working-with-word-documents/" aria-label="Article Title C# Working With Word Documents">C# Working With Word Documents</a></h1><h2 id="migrated-from-jekyll-automating-word-document-creation-with-c-and-interop">Migrated from Jekyll: Automating Word document creation with C# and Interop.</h2><div class="meta"><p><span>Published: <time datetime="2017-04-03" aria-label="Publish Date">Apr 3, 2017</time></span><span> | </span><span>Author: <a href="/about/" aria-label="Article Author">Kevin Zita</a></span></p><p>Tags: <a href="/tags/blog/" aria-label="Tags Name of blog">blog</a>, <a href="/tags/jekyll/" aria-label="Tags Name of  jekyll">jekyll</a>, <a href="/tags/post/" aria-label="Tags Name of  post">post</a>, <a href="/tags/csharp/" aria-label="Tags Name of  csharp">csharp</a>, <a href="/tags/word/" aria-label="Tags Name of  word">word</a>, <a href="/tags/automation/" aria-label="Tags Name of  automation">automation</a></p></div><hr><style>img,iframe {max-width: 100%;height: auto;}</style><p>While working with C#/.NET automating the creation of word documents was a painful process to figure out initially. The great part about using word automation is that it frees up other people's time who previously had to spend time on these repetitive tasks on a daily basis.</p><p>I chose to use the Microsoft.Office.Interop.Word COM assembly to generate documents. The only issue with this approach is that it is required to have Word installed on the machine that the program will be running on.</p><p>Once you have a word document (.docx format) to work with as a template document for inserting text into you can begin adding bookmarks to the document.<br>These bookmarks will act as insert points within your code.</p><p>What I normally do is select the placeholder text I want to overwrite, and then insert a bookmark at that point (while taking note of the name I used for the bookmark). In Word 2016 the bookmark functionality can be found under the &quot;Insert&quot; menu. Whatever text (or wherever your cursor currently is) you currently have highlighted is where the bookmark will be created. This text will also be replaced when inserting text into the bookmark.</p><p>Since the document you are inserting text into is acting as a template it is necessary to first make a copy of the document before altering it. If you don't - you will be deleting the bookmarks you created for every document after the first.</p><p>I normally setup class level variables to hold the directories where the copying of the template is done, and where the populating of the copied document is done.</p><pre class="language-csharp" tabindex="0"><code class="language-csharp"><span class="token comment">// I pass in the class level variable containing the file path for the copied</span>
+<span class="token comment">// file to check if a copy already exists.</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>_sOriginDirectoryPath<span class="token punctuation">.</span><span class="token function">Contains</span><span class="token punctuation">(</span><span class="token string">"copy"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">WriteLogFile</span><span class="token punctuation">(</span><span class="token string">"Found A Copy  - Deleting It"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    File<span class="token punctuation">.</span><span class="token function">Delete</span><span class="token punctuation">(</span>sOriginDirectoryPath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// If we don't find a copy - create one.</span>
+File<span class="token punctuation">.</span><span class="token function">Copy</span><span class="token punctuation">(</span>_OriginDirectoryPath<span class="token punctuation">,</span> _sWorkingDirectoryPath  <span class="token operator">+</span> <span class="token string">"Copy.docx"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">WriteLogFile</span><span class="token punctuation">(</span><span class="token string">"File Copied!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Now we can use Microsoft.Office.Interop.Word to open and populate the file.</span>
+<span class="token class-name">Application</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Application</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Document</span> doc <span class="token operator">=</span> app<span class="token punctuation">.</span>Documents<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>_sWorkingDirectoryPath <span class="token operator">+</span> <span class="token string">"\\"</span> <span class="token operator">+</span> <span class="token string">"Copy.docx"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Now we are able to loop through each existing bookmark within the document,</span>
+<span class="token comment">// and insert text in its place.</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>doc<span class="token punctuation">.</span>Bookmarks<span class="token punctuation">.</span><span class="token function">Exists</span><span class="token punctuation">(</span><span class="token string">"myBookmarkName"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">object</span></span> oBookMark <span class="token operator">=</span> <span class="token string">"myBookmarkName"</span><span class="token punctuation">;</span>
+    doc<span class="token punctuation">.</span>Bookmarks<span class="token punctuation">.</span><span class="token function">get_Item</span><span class="token punctuation">(</span><span class="token keyword">ref</span> oBookMark<span class="token punctuation">)</span><span class="token punctuation">.</span>Range<span class="token punctuation">.</span>Text <span class="token operator">=</span> Hello World<span class="token operator">!</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Next we close the document we opened, and quit/dispose of the word</span>
+<span class="token comment">// application.</span>
+<span class="token punctuation">(</span><span class="token punctuation">(</span>_Document<span class="token punctuation">)</span>doc<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span><span class="token punctuation">(</span>_Application<span class="token punctuation">)</span>app<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Quit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Lastly I normally return the newly created document path to upload it to an</span>
+<span class="token comment">// FTP, Email it, or save it in a specific location.</span>
+<span class="token keyword">return</span> _sWorkingDirectoryPath <span class="token operator">+</span> <span class="token string">"\\"</span> <span class="token operator">+</span> <span class="token string">"NewPdfToSend.pdf"</span><span class="token punctuation">;</span></code></pre><p>All of the code snippet above is usually enclosed in a loop, so each iteration you're essentially generating a document per an order and doing something with it.</p><p>Here are a few final tips if you're going to have more than a few bookmarks in your document:</p><ul><li>Enabling proofreading marks helps when figuring out why text isn't going where it's supposed to.</li><li>If you have to work with many bookmarks (40+) it's probably a good idea to create an object to pass to your function that populates your document.</li><li>If the structure of the document is made of columns you may have to write a function(s) to correctly determine the spacing/tab amounts between insertions.</li><li>You can insert multiple bookmarks in the same position - even without replacing text, but it makes debugging a little harder if something goes wrong later on when generating documents.</li></ul></article></heading-anchors></main><footer><p><em>Built with <a aria-label="Copyrights for this web technology" href="https://www.11ty.dev/">Eleventy v3.1.2</a></em> <a aria-label="Developer for this website" href="" target="_blank"></a></p></footer><script type="module" src="/dist/D4P6luT2N3.js"></script></body></html>
