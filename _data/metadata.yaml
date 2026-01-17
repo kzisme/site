@@ -1,0 +1,33 @@
+title: ""
+description: ""
+language: "en"
+locale: en_US
+image: /logos.png
+favicon: /logos.png
+url: "https://brutalism.000000076.xyz"
+#url: "http://localhost:8080"
+
+metasocial: 
+ - facebook: "https://www.facebook.com/"
+ - twitteruser: "@username"
+ - twitter: "https://x.com/user"
+
+navbar: 
+ - nav: Home
+   url: /
+ - nav: About
+   url: /about/
+ - nav: Blog
+   url: /blog/
+ - nav: Download
+   url: 
+
+footer: 
+ text1: 
+ text2: 
+ text2_url: 
+
+author: 
+ name: "Kevin Zita"
+ email: "kevin@kzisme.com"
+ url: "/about/"

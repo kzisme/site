@@ -1,0 +1,20 @@
+---
+layout: page.njk
+---
+<h1>
+  <a href="" aria-label="Title article for " class="kz-term-title">~/kzisme<span class="kz-cursor" aria-hidden="true">_</span></a>
+</h1>
+<div>
+  {% for post in collections.blog | reverse %}
+    {% if loop.index0 < 5 %}
+      <article>
+        <h2><a href="{{ post.url }}" aria-label="Article Title" class="postlist-link">{{ post.data.title }}</a></h2>
+        <p>{{ post.data.description }}</p>
+        <p>Publish by <a href="{{metadata.author.url}}" aria-label="Article Author">{{metadata.author.name}}</a> on <time datetime="{{ post.date | htmlDateString }}" aria-label="Article Published">{{ post.date | readableDate }}</time></p>
+      </article>
+    {% endif %}
+  {% endfor %}
+</div>
+<div class="pagination">
+  <p><a aria-label="Read All Article on this website" href="/blog">Explore All Post</a></p>
+</div>

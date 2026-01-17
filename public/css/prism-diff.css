@@ -1,0 +1,190 @@
+/* Firefox Dark VSCode Theme for PrismJS (accurate mapping) */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #B1B1B3;
+  background: #2A2A2E;
+  font-family: 'Fira Mono', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 1em;
+  text-shadow: none;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  tab-size: 4;
+  hyphens: none;
+}
+
+/* Selection */
+pre[class*="language-"]::selection, code[class*="language-"]::selection {
+  background: #204E8A;
+}
+pre[class*="language-"]::-moz-selection, code[class*="language-"]::-moz-selection {
+  background: #204E8A;
+}
+
+/* Token styles */
+.token.comment,
+.token.prolog,
+.token.cdata {
+  color: #939393;
+  font-style: italic;
+}
+
+.token.punctuation {
+  color: #D7D7DB;
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+.token.property,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #FFFFB4;
+}
+
+.token.boolean,
+.token.number {
+  color: #6B89FF;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #6B89FF;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.token.variable {
+  color: #75BFFF;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword,
+.token.storage,
+.token.storage-type {
+  color: #FF7DE9;
+}
+
+.token.function,
+.token.class-name,
+.token.meta-function-call,
+.token.entity-name-class,
+.token.entity-name-type {
+  color: #B98EFF;
+}
+
+.token.regex,
+.token.important {
+  color: #6B89FF;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.parameter,
+.token.variable-parameter {
+  color: #75BFFF;
+}
+
+.token.tag,
+.token.entity-name-tag {
+  color: #75BFFF;
+}
+
+.token.attr-value,
+.token.entity-other-attribute-name {
+  color: #FF7DE9;
+}
+
+.token.markup-inserted {
+  color: #86DE74;
+}
+.token.markup-deleted {
+  color: #CC3D3D;
+}
+.token.markup-changed {
+  color: #0A84FF;
+}
+
+.token.heading {
+  color: #86DE74;
+  font-weight: bold;
+}
+
+.token.inline-code {
+  color: #B98EFF;
+}
+
+.token.json-property {
+  color: #75BFFF;
+}
+
+.token.json-string {
+  color: #FF7DE9;
+}
+
+.token.json-number {
+  color: #86DE74;
+}
+
+/* Diff-specific rules (preserved from original) */
+pre[class*="language-diff-"] {
+	--eleventy-code-padding: 1.25em;
+	padding-left: var(--eleventy-code-padding);
+	padding-right: var(--eleventy-code-padding);
+}
+.token.deleted {
+	background-color: hsl(0, 51%, 37%);
+	color: inherit;
+}
+.token.inserted {
+	background-color: hsl(126, 31%, 39%);
+	color: inherit;
+}
+
+/* Make the + and - characters unselectable for copy/paste */
+.token.prefix.unchanged,
+.token.prefix.inserted,
+.token.prefix.deleted {
+	-webkit-user-select: none;
+	user-select: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.token.prefix.inserted,
+.token.prefix.deleted {
+	width: var(--eleventy-code-padding);
+	background-color: rgba(0,0,0,.2);
+}
+
+/* Optional: full-width background color */
+.token.inserted:not(.prefix),
+.token.deleted:not(.prefix) {
+	display: block;
+	margin-left: calc(-1 * var(--eleventy-code-padding));
+	margin-right: calc(-1 * var(--eleventy-code-padding));
+	text-decoration: none; /* override del, ins, mark defaults */
+	color: inherit; /* override del, ins, mark defaults */
+}

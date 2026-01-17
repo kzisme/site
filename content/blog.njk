@@ -1,0 +1,8 @@
+---
+title: Blog
+layout: page.njk
+---
+
+<h1>Blog</h1>
+{% set postslist = collections.blog | reverse %}
+{% include "postslist.njk" %}
